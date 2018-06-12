@@ -7,13 +7,12 @@ public class ClimbingManager : MonoBehaviour {
     public GameObject character;
     public ClimbingLeft left;
     public ClimbingRight right;
-    public static event Action moving;
-    public static event Action climbing;
+    public static event Action Moving;
+    public static event Action Climbing;
 
     void Update()
     {
         bool gripped = left.grippable || right.grippable;
-
         //detects if the controller's triggers are held down
         //if we are colliding with a grippable object and if we are holding down the grip buttons
         if (gripped)
@@ -23,16 +22,16 @@ public class ClimbingManager : MonoBehaviour {
             {
 
                 character.transform.position += (left.previousPosition - OVRInput.GetLocalControllerPosition(OVRInput.Controller.LTouch));
-                if (climbing != null)
+                if (Climbing != null)
                 {
-                    climbing();
+                    Climbing();
                 }
             }
-            else //if (left.grippable && OVRInput.GetUp(OVRInput.Button.PrimaryHandTrigger))
+            else //if (left.grippable && (OVRInput.GetUp(OVRInput.Button.PrimaryHandTrigger) || OVRInput.GetUp(OVRInput.Button.PrimaryIndexTrigger)))
             {
-                if (moving != null)
+                if (Moving != null)
                 {
-                    moving();
+                    Moving();
                 }
             }
 
@@ -41,24 +40,24 @@ public class ClimbingManager : MonoBehaviour {
             {
 
                 character.transform.position += (right.previousPosition - OVRInput.GetLocalControllerPosition(OVRInput.Controller.RTouch));
-                if (climbing != null)
+                if (Climbing != null)
                 {
-                    climbing();
+                    Climbing();
                 }
             }
             else if (right.grippable && (OVRInput.GetUp(OVRInput.Button.SecondaryHandTrigger) || OVRInput.GetUp(OVRInput.Button.SecondaryIndexTrigger)))
             {
-                if (moving != null)
+                if (Moving != null)
                 {
-                    moving();
+                    Moving();
                 }
             }
             if ((OVRInput.Get(OVRInput.Button.PrimaryHandTrigger) || OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger)) && ((OVRInput.GetUp(OVRInput.Button.SecondaryHandTrigger) || OVRInput.GetUp(OVRInput.Button.SecondaryIndexTrigger))))
             {
                 character.transform.position += (left.previousPosition - OVRInput.GetLocalControllerPosition(OVRInput.Controller.LTouch));
-                if (climbing != null)
+                if (Climbing != null)
                 {
-                    climbing();
+                    Climbing();
                 }
             }
 

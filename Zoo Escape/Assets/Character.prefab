@@ -36,7 +36,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4487776390150428}
   - component: {fileID: 114583393228370822}
-  - component: {fileID: 114565450498131574}
   m_Layer: 0
   m_Name: hand_right
   m_TagString: Untagged
@@ -71,7 +70,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4143239560740276}
   - component: {fileID: 114290151233817512}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: controller_right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -155,6 +154,7 @@ GameObject:
   - component: {fileID: 54885696552440776}
   - component: {fileID: 114541073131094816}
   - component: {fileID: 65567326558404056}
+  - component: {fileID: 114673889447447852}
   m_Layer: 0
   m_Name: RightHandAnchor
   m_TagString: Untagged
@@ -203,7 +203,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4572233336153034}
   - component: {fileID: 114065170480168272}
-  - component: {fileID: 114168702327932540}
   m_Layer: 0
   m_Name: hand_left
   m_TagString: Untagged
@@ -222,6 +221,7 @@ GameObject:
   - component: {fileID: 54957826445823386}
   - component: {fileID: 114975811053628278}
   - component: {fileID: 65349822523162314}
+  - component: {fileID: 114578407658813112}
   m_Layer: 0
   m_Name: LeftHandAnchor
   m_TagString: Untagged
@@ -238,7 +238,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4297728729866404}
   - component: {fileID: 114936420175278994}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: controller_left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -414,7 +414,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1908760002466512}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.62, y: 19.346, z: 8.7}
+  m_LocalPosition: {x: 0.47, y: 19.81, z: 9.11}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4774660974128510}
@@ -916,23 +916,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e53b07ad62d980a4da9fffff0b05fd2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114168702327932540
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1628933964508272}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  outlineMode: 0
-  outlineColor: {r: 1, g: 1, b: 1, a: 1}
-  outlineWidth: 2
-  precomputeOutline: 0
-  bakeKeys: []
-  bakeValues: []
 --- !u!114 &114216659426069218
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1063,23 +1046,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   previousPosition: {x: 0, y: 0, z: 0}
   grippable: 0
---- !u!114 &114565450498131574
+--- !u!114 &114578407658813112
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1035472832501806}
+  m_GameObject: {fileID: 1630226087892676}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Script: {fileID: 11500000, guid: fd425c2d06f39bf4899d07c05d0f10eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineMode: 0
-  outlineColor: {r: 1, g: 1, b: 1, a: 1}
-  outlineWidth: 2
-  precomputeOutline: 0
-  bakeKeys: []
-  bakeValues: []
+  grabBegin: 0.55
+  grabEnd: 0.35
+  m_parentHeldObject: 0
+  m_gripTransform: {fileID: 4757489175121532}
+  m_grabVolumes:
+  - {fileID: 65349822523162314}
+  m_controller: 1
+  m_parentTransform: {fileID: 0}
 --- !u!114 &114583393228370822
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1120,6 +1105,25 @@ MonoBehaviour:
   character: {fileID: 1908760002466512}
   left: {fileID: 114975811053628278}
   right: {fileID: 114541073131094816}
+--- !u!114 &114673889447447852
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1367744850057706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd425c2d06f39bf4899d07c05d0f10eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  grabBegin: 0.55
+  grabEnd: 0.35
+  m_parentHeldObject: 0
+  m_gripTransform: {fileID: 4033472643716408}
+  m_grabVolumes:
+  - {fileID: 65567326558404056}
+  m_controller: 2
+  m_parentTransform: {fileID: 0}
 --- !u!114 &114779634069740104
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1202,9 +1206,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0950df82e7936c84983497630bde5b54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Acceleration: 0.1
+  Acceleration: 0.2
   Damping: 0.3
-  BackAndSideDampen: 0.5
+  BackAndSideDampen: 0.45
   JumpForce: 0.3
   RotationAmount: 1.5
   RotationRatchet: 45
@@ -1215,7 +1219,7 @@ MonoBehaviour:
   GravityModifier: 0
   useProfileData: 1
   EnableLinearMovement: 1
-  EnableRotation: 1
+  EnableRotation: 0
 --- !u!114 &114999629091321026
 MonoBehaviour:
   m_ObjectHideFlags: 1

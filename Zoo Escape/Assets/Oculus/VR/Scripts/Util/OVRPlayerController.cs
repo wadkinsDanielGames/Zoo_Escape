@@ -21,7 +21,7 @@ limitations under the License.
 
 using System;
 using UnityEngine;
-
+using System.Collections;
 /// <summary>
 /// Controls the player's movement in virtual reality.
 /// </summary>
@@ -137,9 +137,9 @@ public class OVRPlayerController : MonoBehaviour
 	protected CharacterController Controller = null;
 	protected OVRCameraRig CameraRig = null;
 
-	private float MoveScale = 1.0f;
-	private Vector3 MoveThrottle = Vector3.zero;
-	private float FallSpeed = 0.0f;
+	public float MoveScale = 1.0f;
+	public Vector3 MoveThrottle = Vector3.zero;
+	public float FallSpeed = 0.0f;
 	private OVRPose? InitialPose;
 	public float InitialYRotation { get; private set; }
 	private float MoveScaleMultiplier = 1.0f;
@@ -151,7 +151,8 @@ public class OVRPlayerController : MonoBehaviour
 	private float SimulationRate = 60f;
 	private float buttonRotation = 0f;
 	private bool ReadyToSnapTurn; // Set to true when a snap turn has occurred, code requires one frame of centered thumbstick to enable another snap turn.
-
+    private bool climbing = false;
+    public float grav;
 	void Start()
 	{
 		// Add eye-depth as a camera offset from the player controller
@@ -179,12 +180,15 @@ public class OVRPlayerController : MonoBehaviour
 			CameraRig = CameraRigs[0];
 
 		InitialYRotation = transform.rotation.eulerAngles.y;
-	}
+        UnityEngine.XR.InputTracking.Recenter();//******************************************************************************************
 
-	void OnEnable()
+    }
+
+    void OnEnable()
 	{
 		OVRManager.display.RecenteredPose += ResetOrientation;
-
+        MechanicsHandler.ClimbingInputLock += Lock;
+        MechanicsHandler.ClimbingInputUnlock += Unlock;
 		if (CameraRig != null)
 		{
 			CameraRig.UpdatedAnchors += UpdateTransform;
@@ -194,12 +198,26 @@ public class OVRPlayerController : MonoBehaviour
 	void OnDisable()
 	{
 		OVRManager.display.RecenteredPose -= ResetOrientation;
-
-		if (CameraRig != null)
+        MechanicsHandler.ClimbingInputLock -= Lock;
+        MechanicsHandler.ClimbingInputUnlock -= Unlock;
+        if (CameraRig != null)
 		{
 			CameraRig.UpdatedAnchors -= UpdateTransform;
 		}
 	}
+    void Lock()
+    {
+
+        SimulationRate = 0;
+        climbing = true;
+    }
+    void Unlock()
+    {
+        SimulationRate = 60;
+        climbing = false;
+    }
+
+
 
 	void Update()
 	{
@@ -212,6 +230,10 @@ public class OVRPlayerController : MonoBehaviour
 
         if (OVRInput.GetDown(OVRInput.Button.One))
             Jump();
+        if (float.IsNaN(MoveThrottle.x) || float.IsNaN(MoveThrottle.y) || float.IsNaN(MoveThrottle.z))
+        {
+            MoveThrottle = new Vector3(0, 0, 0);
+        }
     }
 
 	protected virtual void UpdateController()
@@ -267,16 +289,17 @@ public class OVRPlayerController : MonoBehaviour
 
 		moveDirection += MoveThrottle * SimulationRate * Time.deltaTime;
 
-		// Gravity
-		if (Controller.isGrounded && FallSpeed <= 0)
-			FallSpeed = ((Physics.gravity.y * (GravityModifier * 0.002f)));
-		else
-			FallSpeed += ((Physics.gravity.y * (GravityModifier * 0.002f)) * SimulationRate * Time.deltaTime);
-
+        // Gravity
+        if (Controller.isGrounded && FallSpeed <= 0)
+            FallSpeed = ((Physics.gravity.y * (GravityModifier * 0.002f)));
+        else
+            FallSpeed += ((Physics.gravity.y * (GravityModifier * 0.002f)) * SimulationRate * Time.deltaTime);//************************
+        
 		moveDirection.y += FallSpeed * SimulationRate * Time.deltaTime;
 
+        grav = Physics.gravity.y;
 
-		if (Controller.isGrounded && MoveThrottle.y <= transform.lossyScale.y * 0.001f)
+        if (Controller.isGrounded && MoveThrottle.y <= transform.lossyScale.y * 0.001f)
 		{
 			// Offset correction for uneven ground
 			float bumpUpOffset = Mathf.Max(Controller.stepOffset, new Vector3(moveDirection.x, 0, moveDirection.z).magnitude);
@@ -337,9 +360,9 @@ public class OVRPlayerController : MonoBehaviour
 				MoveScale = 0.70710678f;
 
 			// No positional movement if we are in the air
-			if (!Controller.isGrounded)
+			if (climbing)//*********************************************************
 				MoveScale = 0.0f;
-
+            
 			MoveScale *= SimulationRate * Time.deltaTime;
 
 			// Compute this for key movement

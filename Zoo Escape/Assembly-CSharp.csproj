@@ -285,6 +285,7 @@
     <Compile Include="Assets\Scripts\ClimbingManager.cs" />
     <Compile Include="Assets\Scripts\ClimbingRight.cs" />
     <Compile Include="Assets\Scripts\MechanicsHandler.cs" />
+    <Compile Include="Assets\Scripts\OutOfBounds.cs" />
     <Compile Include="Assets\Scripts\StartTrack.cs" />
     <None Include="Assets\Oculus\Avatar\Content\Materials\AvatarMaterialStateShader.cginc" />
     <None Include="Assets\Oculus\VR\Resources\OVRMRUnlitTransparent.shader" />
@@ -302,7 +303,6 @@
     <None Include="Assets\Oculus\Avatar\Content\Materials\AvatarSurfaceShaderPBSV2.shader" />
     <None Include="Assets\Oculus\VR\Resources\Underlay Transparent Occluder.shader" />
     <None Include="Assets\Oculus\VR\Resources\Texture2D Blit.shader" />
-    <None Include="Assets\Toby Fredson\Rocky Hills Environment - Light Pack\Legacy Project\Legacy Project_Read Me!.txt" />
     <None Include="Assets\Oculus\Avatar\Content\Materials\AvatarSurfaceShaderPBS.shader" />
     <None Include="Assets\Oculus\VR\Resources\OVRMRCameraFrame.shader" />
     <None Include="Assets\QuickOutline\Resources\Shaders\OutlineMask.shader" />

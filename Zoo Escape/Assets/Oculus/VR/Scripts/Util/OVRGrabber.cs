@@ -21,7 +21,7 @@ limitations under the License.
 
 using System.Collections.Generic;
 using UnityEngine;
-
+using System;
 /// <summary>
 /// Allows grabbing and throwing of objects with the OVRGrabbable component on them.
 /// </summary>
@@ -67,6 +67,11 @@ public class OVRGrabber : MonoBehaviour
 	protected Dictionary<OVRGrabbable, int> m_grabCandidates = new Dictionary<OVRGrabbable, int>();
 	protected bool operatingWithoutOVRCameraRig = true;
 
+    public static event Action CantClimbL;
+    public static event Action CanClimbL;
+    public static event Action CantClimbR;
+    public static event Action CanClimbR;
+    public bool isLeft;
     /// <summary>
     /// The currently grabbed object.
     /// </summary>
@@ -174,6 +179,21 @@ public class OVRGrabber : MonoBehaviour
         int refCount = 0;
         m_grabCandidates.TryGetValue(grabbable, out refCount);
         m_grabCandidates[grabbable] = refCount + 1;
+        if (isLeft)
+        {
+            if (CantClimbL != null)
+            {
+                CantClimbL();
+            }
+        }
+        if (!isLeft)
+        {
+            if (CantClimbR != null)
+            {
+                CantClimbR();
+            }
+        }
+
     }
 
     void OnTriggerExit(Collider otherCollider)
@@ -197,6 +217,21 @@ public class OVRGrabber : MonoBehaviour
         {
             m_grabCandidates.Remove(grabbable);
         }
+
+        if (isLeft)
+        {
+            if (CanClimbL != null)
+            {
+                CanClimbL();
+            }
+        }
+        if (!isLeft)
+        {
+            if (CanClimbR != null)
+            {
+                CanClimbR();
+            }
+        }
     }
 
     protected void CheckForGrabOrRelease(float prevFlex)
@@ -213,6 +248,7 @@ public class OVRGrabber : MonoBehaviour
 
     protected virtual void GrabBegin()
     {
+
         float closestMagSq = float.MaxValue;
 		OVRGrabbable closestGrabbable = null;
         Collider closestGrabbableCollider = null;

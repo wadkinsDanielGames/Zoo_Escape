@@ -284,8 +284,11 @@
     <Compile Include="Assets\Scripts\ClimbingLeft.cs" />
     <Compile Include="Assets\Scripts\ClimbingManager.cs" />
     <Compile Include="Assets\Scripts\ClimbingRight.cs" />
+    <Compile Include="Assets\Scripts\ClipThroughGround.cs" />
+    <Compile Include="Assets\Scripts\ClipThroughWall.cs" />
     <Compile Include="Assets\Scripts\MechanicsHandler.cs" />
     <Compile Include="Assets\Scripts\OutOfBounds.cs" />
+    <Compile Include="Assets\Scripts\ResetPosition.cs" />
     <Compile Include="Assets\Scripts\StartTrack.cs" />
     <None Include="Assets\Oculus\Avatar\Content\Materials\AvatarMaterialStateShader.cginc" />
     <None Include="Assets\Oculus\VR\Resources\OVRMRUnlitTransparent.shader" />

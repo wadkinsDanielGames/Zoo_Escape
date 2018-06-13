@@ -72,6 +72,10 @@ public class OVRGrabber : MonoBehaviour
     public static event Action CantClimbR;
     public static event Action CanClimbR;
     public bool isLeft;
+    public static event Action ItemReleasedOutOfBounds;
+    public static event Action ItemRegrabbedBounds;
+
+
     /// <summary>
     /// The currently grabbed object.
     /// </summary>
@@ -275,6 +279,11 @@ public class OVRGrabber : MonoBehaviour
                     closestGrabbableCollider = grabbableCollider;
                 }
             }
+            if (ItemRegrabbedBounds!=null)
+            {
+                ItemRegrabbedBounds();
+            }
+            //********************************************
         }
 
         // Disable grab volumes to prevent overlaps
@@ -372,6 +381,12 @@ public class OVRGrabber : MonoBehaviour
 			Vector3 angularVelocity = trackingSpace.orientation * OVRInput.GetLocalControllerAngularVelocity(m_controller);
 
             GrabbableRelease(linearVelocity, angularVelocity);
+
+            if (ItemReleasedOutOfBounds != null)
+            {
+                ItemReleasedOutOfBounds();
+            }
+
         }
 
         // Re-enable grab volumes to allow overlap events

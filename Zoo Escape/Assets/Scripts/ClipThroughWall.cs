@@ -7,7 +7,6 @@ public class ClipThroughWall : MonoBehaviour {
     public bool backInBounds = true;
     public bool colliding = false;
     public bool startingTimer = false;
-    public int NoneLeftRight = 0;
     public bool fromLeft;
 
     private void OnTriggerStay(Collider other)

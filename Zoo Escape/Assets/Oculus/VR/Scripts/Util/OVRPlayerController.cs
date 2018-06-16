@@ -153,6 +153,8 @@ public class OVRPlayerController : MonoBehaviour
 	private bool ReadyToSnapTurn; // Set to true when a snap turn has occurred, code requires one frame of centered thumbstick to enable another snap turn.
     private bool climbing = false;
     public float grav;
+    public static event Action<float> turnLeft;
+    public static event Action<float> turnRight;
 	void Start()
 	{
 		// Add eye-depth as a camera offset from the player controller
@@ -421,7 +423,8 @@ public class OVRPlayerController : MonoBehaviour
 
 		if (EnableRotation)
 		{
-			Vector3 euler = transform.rotation.eulerAngles;
+
+            Vector3 euler = transform.rotation.eulerAngles;
 			float rotateInfluence = SimulationRate * Time.deltaTime * RotationAmount * RotationScaleMultiplier;
 
 			bool curHatLeft = OVRInput.Get(OVRInput.Button.PrimaryShoulder);
@@ -456,16 +459,27 @@ public class OVRPlayerController : MonoBehaviour
 					{
 						euler.y -= RotationRatchet;
 						ReadyToSnapTurn = false;
-					}
-				}
+                        //transform.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y - 45, transform.rotation.z);//
+                        if(turnLeft != null)
+                        {
+                            turnLeft(RotationRatchet);
+                        }
+
+                    }
+                }
 				else if (OVRInput.Get(OVRInput.Button.SecondaryThumbstickRight))
 				{
 					if (ReadyToSnapTurn)
 					{
 						euler.y += RotationRatchet;
 						ReadyToSnapTurn = false;
-					}
-				}
+                        //transform.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y + 45, transform.rotation.z);//
+                        if(turnRight != null)
+                        {
+                            turnRight(RotationRatchet);
+                        }
+                    }
+                }
 				else
 				{
 					ReadyToSnapTurn = true;
@@ -476,9 +490,9 @@ public class OVRPlayerController : MonoBehaviour
 				Vector2 secondaryAxis = OVRInput.Get(OVRInput.Axis2D.SecondaryThumbstick);
 				euler.y += secondaryAxis.x * rotateInfluence;
 			}
-
 			transform.rotation = Quaternion.Euler(euler);
-		}
+            //transform.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y+45, transform.rotation.z);//
+        }
 	}
 
 

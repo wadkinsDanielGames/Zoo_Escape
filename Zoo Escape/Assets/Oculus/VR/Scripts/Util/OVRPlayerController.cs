@@ -230,7 +230,7 @@ public class OVRPlayerController : MonoBehaviour
 		if (Input.GetKeyDown(KeyCode.E))
 			buttonRotation += RotationRatchet;
 
-        if (OVRInput.GetDown(OVRInput.Button.One))
+        if (OVRInput.GetDown(OVRInput.Button.One) || OVRInput.GetDown(OVRInput.Button.Three))
             Jump();
         if (float.IsNaN(MoveThrottle.x) || float.IsNaN(MoveThrottle.y) || float.IsNaN(MoveThrottle.z))
         {
@@ -393,7 +393,15 @@ public class OVRPlayerController : MonoBehaviour
 			moveInfluence = Acceleration * 0.1f * MoveScale * MoveScaleMultiplier;
 
 #if !UNITY_ANDROID // LeftTrigger not avail on Android game pad
-			moveInfluence *= 1.0f + OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger);
+			//moveInfluence *= 1.0f + OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger);
+            if (OVRInput.Get(OVRInput.Button.Two))
+            {
+                moveInfluence *= 1.5f;
+            }
+            else
+            {
+                moveInfluence *= 1f;
+            }
 #endif
 
 			Vector2 primaryAxis = OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick);

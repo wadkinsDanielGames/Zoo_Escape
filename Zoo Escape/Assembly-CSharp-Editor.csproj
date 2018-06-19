@@ -82,11 +82,35 @@
     <Compile Include="Assets\Oculus\VR\Editor\OVRScreenshotWizard.cs" />
     <Compile Include="Assets\Oculus\VR\Scripts\Editor\OVRManagerEditor.cs" />
     <None Include="Assets\Oculus\VR\Editor\AndroidManifest.OVRSubmission.xml" />
+    <Reference Include="com.unity.render-pipelines.core.Editor">
+      <HintPath>C:/Users/Daniel/Desktop/Zoo_Escape_/Zoo_Escape/Zoo Escape/Library/ScriptAssemblies/com.unity.render-pipelines.core.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="com.unity.render-pipelines.core.Runtime">
+      <HintPath>C:/Users/Daniel/Desktop/Zoo_Escape_/Zoo_Escape/Zoo Escape/Library/ScriptAssemblies/com.unity.render-pipelines.core.Runtime.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>C:/Users/Daniel/Desktop/Zoo_Escape_/Zoo_Escape/Zoo Escape/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>
+    <Reference Include="com.unity.render-pipelines.lightweight.Runtime">
+      <HintPath>C:/Users/Daniel/Desktop/Zoo_Escape_/Zoo_Escape/Zoo Escape/Library/ScriptAssemblies/com.unity.render-pipelines.lightweight.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="com.unity.render-pipelines.lightweight.Editor">
+      <HintPath>C:/Users/Daniel/Desktop/Zoo_Escape_/Zoo_Escape/Zoo Escape/Library/ScriptAssemblies/com.unity.render-pipelines.lightweight.Editor.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.PackageManagerUI.Editor">
       <HintPath>C:/Users/Daniel/Desktop/Zoo_Escape_/Zoo_Escape/Zoo Escape/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="com.unity.postprocessing.Editor">
+      <HintPath>C:/Users/Daniel/Desktop/Zoo_Escape_/Zoo_Escape/Zoo Escape/Library/ScriptAssemblies/com.unity.postprocessing.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="com.unity.postprocessing.Runtime">
+      <HintPath>C:/Users/Daniel/Desktop/Zoo_Escape_/Zoo_Escape/Zoo Escape/Library/ScriptAssemblies/com.unity.postprocessing.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.ShaderGraph.Editor">
+      <HintPath>C:/Users/Daniel/Desktop/Zoo_Escape_/Zoo_Escape/Zoo Escape/Library/ScriptAssemblies/Unity.ShaderGraph.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="com.unity.render-pipelines.core.IncludePaths">
+      <HintPath>C:/Users/Daniel/Desktop/Zoo_Escape_/Zoo_Escape/Zoo Escape/Library/ScriptAssemblies/com.unity.render-pipelines.core.IncludePaths.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -348,6 +372,9 @@
     </Reference>
     <Reference Include="UnityEditor.Purchasing">
       <HintPath>C:/Users/Daniel/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.purchasing@2.0.1/Editor/UnityEditor.Purchasing.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.NRefactory">
+      <HintPath>C:/Users/Daniel/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.render-pipelines.core@1.1.10-preview/CoreRP/Editor/ShaderGenerator/ICSharpCode.NRefactory.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.StandardEvents">
       <HintPath>C:/Users/Daniel/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.standardevents@1.0.13/UnityEngine.StandardEvents.dll</HintPath>

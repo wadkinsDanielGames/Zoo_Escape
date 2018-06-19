@@ -290,6 +290,12 @@
     <Compile Include="Assets\Scripts\OutOfBounds.cs" />
     <Compile Include="Assets\Scripts\ResetPosition.cs" />
     <Compile Include="Assets\Scripts\StartTrack.cs" />
+    <Compile Include="Assets\Scripts\TutorialScripts\TutorialClear.cs" />
+    <Compile Include="Assets\Scripts\TutorialScripts\TutorialClimb.cs" />
+    <Compile Include="Assets\Scripts\TutorialScripts\TutorialController.cs" />
+    <Compile Include="Assets\Scripts\TutorialScripts\TutorialDoor.cs" />
+    <Compile Include="Assets\Scripts\TutorialScripts\TutorialGrab.cs" />
+    <Compile Include="Assets\Scripts\TutorialScripts\TutorialJump.cs" />
     <None Include="Assets\Oculus\Avatar\Content\Materials\AvatarMaterialStateShader.cginc" />
     <None Include="Assets\Oculus\VR\Resources\OVRMRUnlitTransparent.shader" />
     <None Include="Assets\QuickOutline\Resources\Shaders\OutlineFill.shader" />
@@ -313,11 +319,35 @@
     <None Include="Assets\Oculus\VR\Resources\OVRMRClipPlane.shader" />
     <None Include="Assets\Oculus\VR\Resources\Underlay Impostor.shader" />
     <None Include="Assets\Oculus\VR\Plugins\placeholder.txt" />
+    <Reference Include="com.unity.render-pipelines.core.Editor">
+      <HintPath>C:/Users/Daniel/Desktop/Zoo_Escape_/Zoo_Escape/Zoo Escape/Library/ScriptAssemblies/com.unity.render-pipelines.core.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="com.unity.render-pipelines.core.Runtime">
+      <HintPath>C:/Users/Daniel/Desktop/Zoo_Escape_/Zoo_Escape/Zoo Escape/Library/ScriptAssemblies/com.unity.render-pipelines.core.Runtime.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>C:/Users/Daniel/Desktop/Zoo_Escape_/Zoo_Escape/Zoo Escape/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>
+    <Reference Include="com.unity.render-pipelines.lightweight.Runtime">
+      <HintPath>C:/Users/Daniel/Desktop/Zoo_Escape_/Zoo_Escape/Zoo Escape/Library/ScriptAssemblies/com.unity.render-pipelines.lightweight.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="com.unity.render-pipelines.lightweight.Editor">
+      <HintPath>C:/Users/Daniel/Desktop/Zoo_Escape_/Zoo_Escape/Zoo Escape/Library/ScriptAssemblies/com.unity.render-pipelines.lightweight.Editor.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.PackageManagerUI.Editor">
       <HintPath>C:/Users/Daniel/Desktop/Zoo_Escape_/Zoo_Escape/Zoo Escape/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="com.unity.postprocessing.Editor">
+      <HintPath>C:/Users/Daniel/Desktop/Zoo_Escape_/Zoo_Escape/Zoo Escape/Library/ScriptAssemblies/com.unity.postprocessing.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="com.unity.postprocessing.Runtime">
+      <HintPath>C:/Users/Daniel/Desktop/Zoo_Escape_/Zoo_Escape/Zoo Escape/Library/ScriptAssemblies/com.unity.postprocessing.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.ShaderGraph.Editor">
+      <HintPath>C:/Users/Daniel/Desktop/Zoo_Escape_/Zoo_Escape/Zoo Escape/Library/ScriptAssemblies/Unity.ShaderGraph.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="com.unity.render-pipelines.core.IncludePaths">
+      <HintPath>C:/Users/Daniel/Desktop/Zoo_Escape_/Zoo_Escape/Zoo Escape/Library/ScriptAssemblies/com.unity.render-pipelines.core.IncludePaths.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>

@@ -9,7 +9,9 @@ public class TutorialJump : MonoBehaviour
     public GameObject leftMessage;
     public GameObject rightMessage;
     public bool opened = false;
-
+    public Renderer left;
+    public Renderer right;
+    public GameObject disable1;
     // Use this for initialization
     void Start()
     {
@@ -27,6 +29,7 @@ public class TutorialJump : MonoBehaviour
     {
         if (other.name == "Character" && opened == false)
         {
+            disable1.SetActive(false);
             leftMessage.SetActive(true);
             rightMessage.SetActive(true);
             //deleteLeft.SetActive(false);

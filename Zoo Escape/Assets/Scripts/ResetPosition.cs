@@ -8,28 +8,25 @@ public class ResetPosition : MonoBehaviour {
     public bool outOfBounds = false;
     public Rigidbody stopMovement;
     // Use this for initialization
+
     void Start () {
-        reset = transform.position;
-        resetRotation = transform.rotation;
+        reset = transform.position;//This stores the reset location on the object this script is applied to.
+        resetRotation = transform.rotation;//This resets the rotation on the object this script is applied to.
 	}
 	
-	// Update is called once per frame
-	void Update () {
+
+	void Update () {//Instead of destroying and creating a new object, this stops movement first, then resets position, then enables physics attributes again. 
         if (outOfBounds == true)
         {
             this.GetComponent<Rigidbody>().useGravity = false;
             this.GetComponent<Rigidbody>().isKinematic = true;
 
-            //stopMovement.useGravity = false;
-            //stopMovement.isKinematic = true;
             transform.position = reset;
             transform.rotation = resetRotation;
 
             this.GetComponent<Rigidbody>().useGravity = true;
             this.GetComponent<Rigidbody>().isKinematic = false;
             outOfBounds = false;
-            //stopMovement.useGravity = true;
-            //stopMovement.isKinematic = false;
         }
 	}
 }

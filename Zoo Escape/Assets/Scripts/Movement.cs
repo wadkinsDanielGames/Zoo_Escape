@@ -24,10 +24,10 @@ public class Movement : MonoBehaviour {
         rigid = GetComponent<Rigidbody>();
         collisionFollower = GetComponent<CapsuleCollider>();
         _current = State.MOVING;
-        tempSpeed = speed;
+        tempSpeed = speed; //This stores the initial speed as the tempSpeed, so we can switch between running and the default walking speed.
     }
 
-    private void OnCollisionStay(Collision collision)
+    private void OnCollisionStay(Collision collision)//checks directly below the character to see if there is a collision, to see if we are able to jump. This prevents jumping on air. 
     {
         if (collision.contacts.Length > 0)
         {
@@ -37,33 +37,33 @@ public class Movement : MonoBehaviour {
                 grounded = true; 
             }
         }
-        //grounded = true;
     }
-    private void OnCollisionExit(Collision collision)
+
+    private void OnCollisionExit(Collision collision)//If there is no collision below the player, we cannot jump. 
     {
         grounded = false;
     }
 
-    private void Update()
+    private void Update()//This handles direct button presses for running and jumping
     {
-        if (OVRInput.GetDown(OVRInput.Button.One) && grounded && _current == State.MOVING)
+        if (OVRInput.GetDown(OVRInput.Button.One) && grounded && _current == State.MOVING)//this will allow you to perform a jump (handled in FixedUpdate)
         {
             jump = true;
         }
-        if (OVRInput.Get(OVRInput.Button.Two))
+        if (OVRInput.Get(OVRInput.Button.Two))//This increases speed while a button is held down
         {
             speed = tempSpeed + 2;
         }
-        if (OVRInput.GetUp(OVRInput.Button.Two))
+        if (OVRInput.GetUp(OVRInput.Button.Two))//Upon release of 'B' button, the speed returns to it's default speed.
         {
             speed = tempSpeed;
         }
     }
+
     // Update is called once per frame
     private void FixedUpdate () {
         SwapState();
-        //collisionFollower.center = new Vector3(camera.localPosition.x, collisionFollower.center.y, camera.localPosition.z);
-        if (jump)
+        if (jump)//This will handle the mechanics of the jump.
         {
             rigid.AddForce(new Vector3(0, jumpForce, 0), ForceMode.Impulse);
             jump = false;
@@ -71,6 +71,7 @@ public class Movement : MonoBehaviour {
         
     }
 
+    //This will handle the mechanics of the walking. 
     private void SwapState()
     {
         switch (_current)
@@ -78,11 +79,12 @@ public class Movement : MonoBehaviour {
             case State.MOVING:
                 if (collisionFollower.center.y > 0)
                 {
-                    collisionFollower.center = new Vector3(camera.localPosition.x, collisionFollower.center.y - .01f, camera.localPosition.z);
+                    collisionFollower.center = new Vector3(camera.localPosition.x, collisionFollower.center.y - .01f, camera.localPosition.z);//**This will emulate climbing over a ledge and standing up slowly. 
                 }
                 else
                 {
-                    collisionFollower.center = new Vector3(camera.localPosition.x, collisionFollower.center.y, camera.localPosition.z);
+                    collisionFollower.center = new Vector3(camera.localPosition.x, collisionFollower.center.y, camera.localPosition.z);//*********This will move the collider in comparison to the camera's location instead of being stuck in the middle. 
+                    //This is good for room scale, where you aren't locked in the middle of the playspace.
                 }
                 float xAxis = Input.GetAxis("Horizontal");
                 float zAxis = Input.GetAxis("Vertical");
@@ -92,27 +94,32 @@ public class Movement : MonoBehaviour {
                 break;
 
             case State.CLIMBING:
-                collisionFollower.center = new Vector3(camera.localPosition.x, camera.localPosition.y + .5f, camera.localPosition.z);
+                collisionFollower.center = new Vector3(camera.localPosition.x, camera.localPosition.y + .5f, camera.localPosition.z);//This raises the object's collision capsule when climbing, to allow you to easily stand up when you pull yourself over a ledge.
                 break;
 
         }
     }
-    private void OnEnable()
+
+    private void OnEnable()//Changes between climbing and moving, comes from mechanics handler.
     {
         MechanicsHandler.ClimbingInputLock += Lock;
         MechanicsHandler.ClimbingInputUnlock += Unlock;
-        }
+    }
+
     private void OnDisable()
     {
         MechanicsHandler.ClimbingInputLock -= Lock;
         MechanicsHandler.ClimbingInputUnlock -= Unlock;
     }
+
     private void Lock()
     {
         _current = State.CLIMBING;
     }
+
     private void Unlock()
     {
         _current = State.MOVING;
     }
+
 }

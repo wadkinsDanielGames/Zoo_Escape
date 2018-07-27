@@ -9,7 +9,7 @@ public class ClipThroughWall : MonoBehaviour {
     public bool startingTimer = false;
     public bool fromLeft;
 
-    private void OnTriggerStay(Collider other)
+    private void OnTriggerStay(Collider other)//If you drop an item into a wall for a second, reset the object's position.
     {
 
         if(other.tag == "ItemBounds")
@@ -28,7 +28,7 @@ public class ClipThroughWall : MonoBehaviour {
 
     }
 
-    private void OnTriggerExit(Collider other)
+    private void OnTriggerExit(Collider other)//An object no longer is out of bounds and its locationd does not need to be reset
     {
         if (other.tag == "ItemBounds")
         {
@@ -61,14 +61,15 @@ public class ClipThroughWall : MonoBehaviour {
         OVRGrabber.ItemRegrabbedBounds -= Regrab;
 
     }
-    void Regrab()
+
+    void Regrab()//If you place an object in a wall and grab it before the 1 second timer is up, you no longer need to release its position.
     {
         if (colliding)
         {
             released = false;
         }
     }
-    void Release()
+    void Release()//Start a timer if you drop an object into a wall. 
     {
         if (colliding && this.transform.parent == null)
         {

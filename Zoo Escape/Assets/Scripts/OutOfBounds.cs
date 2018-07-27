@@ -10,7 +10,7 @@ public class OutOfBounds : MonoBehaviour {
     public GameObject camScripts;
     public bool exited;
     public string sceneName;
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other)//If you touch an out-of-bounds collider, you are prompted to return back to the play zone or else the scene will restart. 
     {
         if(other.tag == "Bounds")
         {
@@ -22,7 +22,7 @@ public class OutOfBounds : MonoBehaviour {
             StartCoroutine(CountDown());
         }
     }
-    private void OnTriggerExit(Collider other)
+    private void OnTriggerExit(Collider other)//This returns you back to the normal camera (back in bounds)
     {
         if(other.tag == "Bounds")
         {

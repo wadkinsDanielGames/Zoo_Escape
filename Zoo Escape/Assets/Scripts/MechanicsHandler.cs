@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public enum Mechanics { MOVEMENT, CLIMBING };
+public enum Mechanics { MOVEMENT, CLIMBING };//This will represent different mechanics
 
 public class MechanicsHandler : MonoBehaviour {
     public Mechanics _current;
@@ -14,10 +14,9 @@ public class MechanicsHandler : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        _current = Mechanics.MOVEMENT;
+        _current = Mechanics.MOVEMENT;//Default mechanic is movement
 	}
 	
-	// Update is called once per frame
 	void Update () {
         SwapState();
 	}
@@ -26,18 +25,16 @@ public class MechanicsHandler : MonoBehaviour {
 
         switch (_current)
         {
-            case Mechanics.MOVEMENT:
-                //charController.stepOffset = 0.3f;
-                //OVRControl.GravityModifier = .15f;
+            case Mechanics.MOVEMENT://This will allow for movement. This will unlock movement in the movement script.
+
                 if (ClimbingInputLock != null)
                 {
                     ClimbingInputUnlock();
                 }
                 break;
 
-            case Mechanics.CLIMBING:
-                //charController.stepOffset = 0f;
-                //OVRControl.GravityModifier = 0f;
+            case Mechanics.CLIMBING://This will ban movement in the movement script.
+
                 if(ClimbingInputLock != null)
                 {
                     ClimbingInputLock();
@@ -46,6 +43,8 @@ public class MechanicsHandler : MonoBehaviour {
 
         }
     }
+    
+    //This receives input from the climbing manager script, and changes states as deemed necessary
     private void OnEnable()
     {
         ClimbingManager.Moving += SwapMoving;

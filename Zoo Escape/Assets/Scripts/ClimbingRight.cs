@@ -13,9 +13,11 @@ public class ClimbingRight : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        //This starts tracking the previous position of the controller on start.
         previousPosition = OVRInput.GetLocalControllerPosition(OVRInput.Controller.RTouch);
     }
 
+    //If you're holding onto an object, you can't climb with that hand (you can with the offhand). 
     private void OnEnable()
     {
         OVRGrabber.CanClimbR += NotHoldingObject;
@@ -41,6 +43,8 @@ public class ClimbingRight : MonoBehaviour
             grippable = false;
         }
     }
+
+    //If the hand is touching a climbing surface and you aren't holding an object, you are able to grip this object.
     private void OnTriggerStay(Collider other)
     {
         if (other.tag == "Climbable" && !holding)

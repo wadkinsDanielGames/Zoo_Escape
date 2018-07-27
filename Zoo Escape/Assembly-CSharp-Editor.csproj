@@ -82,6 +82,9 @@
     <Compile Include="Assets\Oculus\VR\Editor\OVRScreenshotWizard.cs" />
     <Compile Include="Assets\Oculus\VR\Scripts\Editor\OVRManagerEditor.cs" />
     <None Include="Assets\Oculus\VR\Editor\AndroidManifest.OVRSubmission.xml" />
+    <Reference Include="Unity.ProBuilder.AddOns.Editor">
+      <HintPath>C:/Users/Daniel/Desktop/Zoo_Escape_/Zoo_Escape/Zoo Escape/Library/ScriptAssemblies/Unity.ProBuilder.AddOns.Editor.dll</HintPath>
+    </Reference>
     <Reference Include="com.unity.render-pipelines.core.Editor">
       <HintPath>C:/Users/Daniel/Desktop/Zoo_Escape_/Zoo_Escape/Zoo Escape/Library/ScriptAssemblies/com.unity.render-pipelines.core.Editor.dll</HintPath>
     </Reference>
@@ -366,6 +369,27 @@
     </Reference>
     <Reference Include="UnityEditor.Analytics">
       <HintPath>C:/Users/Daniel/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.analytics@2.0.16/Editor/UnityEditor.Analytics.dll</HintPath>
+    </Reference>
+    <Reference Include="AssetIdRemapUtility">
+      <HintPath>C:/Users/Daniel/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.probuilder@3.0.9/ProBuilder/AssetIdRemapUtility/Editor/AssetIdRemapUtility.dll</HintPath>
+    </Reference>
+    <Reference Include="ProBuilderCore">
+      <HintPath>C:/Users/Daniel/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.probuilder@3.0.9/ProBuilder/Classes/ProBuilderCore.dll</HintPath>
+    </Reference>
+    <Reference Include="ProBuilderMeshOps">
+      <HintPath>C:/Users/Daniel/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.probuilder@3.0.9/ProBuilder/Classes/ProBuilderMeshOps.dll</HintPath>
+    </Reference>
+    <Reference Include="KdTreeLib">
+      <HintPath>C:/Users/Daniel/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.probuilder@3.0.9/ProBuilder/Classes/ClassesLib/KdTreeLib.dll</HintPath>
+    </Reference>
+    <Reference Include="pb_Stl">
+      <HintPath>C:/Users/Daniel/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.probuilder@3.0.9/ProBuilder/Classes/ClassesLib/pb_Stl.dll</HintPath>
+    </Reference>
+    <Reference Include="Poly2Tri">
+      <HintPath>C:/Users/Daniel/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.probuilder@3.0.9/ProBuilder/Classes/ClassesLib/Poly2Tri.dll</HintPath>
+    </Reference>
+    <Reference Include="ProBuilderEditor">
+      <HintPath>C:/Users/Daniel/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.probuilder@3.0.9/ProBuilder/Editor/ProBuilderEditor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.Purchasing">
       <HintPath>C:/Users/Daniel/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.purchasing@2.0.1/UnityEngine.Purchasing.dll</HintPath>

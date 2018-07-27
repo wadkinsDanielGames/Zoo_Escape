@@ -122,12 +122,14 @@ public class OVRGrabbable : MonoBehaviour
         m_grabbedBy = hand;
         m_grabbedCollider = grabPoint;
         gameObject.GetComponent<Rigidbody>().isKinematic = true;
+        this.gameObject.layer = 13;
+
     }
 
-	/// <summary>
-	/// Notifies the object that it has been released.
-	/// </summary>
-	virtual public void GrabEnd(Vector3 linearVelocity, Vector3 angularVelocity)
+    /// <summary>
+    /// Notifies the object that it has been released.
+    /// </summary>
+    virtual public void GrabEnd(Vector3 linearVelocity, Vector3 angularVelocity)
     {
         Rigidbody rb = gameObject.GetComponent<Rigidbody>();
         rb.isKinematic = m_grabbedKinematic;
@@ -135,7 +137,7 @@ public class OVRGrabbable : MonoBehaviour
         rb.angularVelocity = angularVelocity;
         m_grabbedBy = null;
         m_grabbedCollider = null;
-
+        this.gameObject.layer = 0;
     }
 
     void Awake()
@@ -166,6 +168,7 @@ public class OVRGrabbable : MonoBehaviour
             // Notify the hand to release destroyed grabbables
             m_grabbedBy.ForceRelease(this);
         }
+       
     }
 
 }

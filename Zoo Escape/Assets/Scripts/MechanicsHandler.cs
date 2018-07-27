@@ -7,8 +7,8 @@ public enum Mechanics { MOVEMENT, CLIMBING };
 
 public class MechanicsHandler : MonoBehaviour {
     public Mechanics _current;
-    public CharacterController charController;
-    public OVRPlayerController OVRControl;
+    //public CharacterController charController;
+    //public OVRPlayerController OVRControl;
     public static event Action ClimbingInputLock;
     public static event Action ClimbingInputUnlock;
 
@@ -27,8 +27,8 @@ public class MechanicsHandler : MonoBehaviour {
         switch (_current)
         {
             case Mechanics.MOVEMENT:
-                charController.stepOffset = 0.3f;
-                OVRControl.GravityModifier = .15f;
+                //charController.stepOffset = 0.3f;
+                //OVRControl.GravityModifier = .15f;
                 if (ClimbingInputLock != null)
                 {
                     ClimbingInputUnlock();
@@ -36,8 +36,8 @@ public class MechanicsHandler : MonoBehaviour {
                 break;
 
             case Mechanics.CLIMBING:
-                charController.stepOffset = 0f;
-                OVRControl.GravityModifier = 0f;
+                //charController.stepOffset = 0f;
+                //OVRControl.GravityModifier = 0f;
                 if(ClimbingInputLock != null)
                 {
                     ClimbingInputLock();
